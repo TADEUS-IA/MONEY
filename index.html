@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Invisible Labyrinth | Premium Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-bright: #FFD700;
+            --bg: #050505;
+            --card-bg: rgba(12, 12, 12, 0.9);
+            --border: rgba(212, 175, 55, 0.25);
+            --text-main: #ffffff;
+            --text-dim: #cccccc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body { 
+            background: var(--bg); 
+            color: var(--text-main); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .ambient-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -3;
+            background: radial-gradient(circle at 50% 15%, #1a1a1a 0%, #050505 100%);
+        }
+
+        /* --- IMAGENS QUE "PULAM" DA TELA --- */
+        .visual-asset {
+            position: fixed;
+            z-index: -2;
+            filter: contrast(1.1) brightness(0.6);
+            opacity: 0.4; /* Aumentado para dar mais presença */
+            pointer-events: none;
+            mask-image: radial-gradient(circle, black 40%, transparent 90%);
+            -webkit-mask-image: radial-gradient(circle, black 40%, transparent 90%);
+            transition: transform 0.1s ease-out;
+            object-fit: contain;
+        }
+
+        /* Dólares saindo do topo */
+        .asset-1 { top: -10%; right: -5%; width: 40vw; transform: rotate(-10deg); }
+        /* Mente Minimalista saindo da base */
+        .asset-2 { bottom: -10%; left: -5%; width: 35vw; }
+
+        .gold-glow {
+            background: linear-gradient(135deg, #fff7ad 0%, #ffd700 45%, #b38728 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Cinzel', serif;
+        }
+
+        .wrapper { max-width: 850px; margin: 0 auto; padding: 0 20px; position: relative; }
+
+        header { 
+            padding: 30px 0 20px 0; /* Compactado ao máximo */
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+            text-align: center;
+        }
+
+        .tagline { font-size: 0.7rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; font-weight: 700; }
+        h1 { font-size: clamp(2.2rem, 8vw, 4.5rem); line-height: 1; margin-bottom: 8px; text-transform: uppercase; }
+        .hero-desc { font-size: 1.1rem; font-weight: 300; color: var(--text-dim); }
+
+        .content-block {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 30px 40px;
+            border-radius: 4px;
+            backdrop-filter: blur(20px);
+            margin-bottom: 15px; /* Dinâmico e próximo */
+        }
+
+        h2 { font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 15px; border-left: 4px solid var(--gold); padding-left: 15px; }
+        h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold); margin: 20px 0 10px 0; letter-spacing: 1px; }
+        p { font-size: 1.1rem; margin-bottom: 12px; color: var(--text-dim); font-weight: 400; }
+        .highlight { color: var(--gold-bright); font-weight: 700; }
+
+        .cta-container {
+            text-align: center;
+            padding: 15px 0 40px 0;
+        }
+
+        .scroll-arrow {
+            margin: 0 auto 15px auto;
+            animation: bounce 2s infinite;
+            display: block;
+        }
+
+        .scroll-arrow svg { width: 30px; stroke: var(--gold); fill: none; stroke-width: 2; }
+
+        .btn-premium {
+            display: inline-block;
+            padding: 18px 55px;
+            background: transparent;
+            color: var(--gold-bright);
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 800;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .btn-premium:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-8px);}
+            60% {transform: translateY(-4px);}
+        }
+
+        footer { padding: 20px 0; text-align: center; font-size: 0.65rem; opacity: 0.4; letter-spacing: 2px; }
+
+        @media (max-width: 768px) {
+            .content-block { padding: 25px 20px; }
+            .asset-1 { width: 60vw; right: -15%; }
+            .asset-2 { width: 55vw; left: -15%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-bg"></div>
+    
+    <img src="https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="visual-asset asset-1" id="a1">
+    <img src="https://plus.unsplash.com/premium_photo-1690297732590-b9875f77471d?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="visual-asset asset-2" id="a2">
+
+    <div class="wrapper">
+        <header>
+            <p class="tagline">Mente & Dinheiro Presents</p>
+            <h1 class="gold-glow">The Invisible<br>Labyrinth</h1>
+            <p class="hero-desc">Why Effort Alone Doesn't Build Wealth</p>
+        </header>
+
+        <main>
+            <div class="content-block">
+                <p><span class="highlight">Have you ever had the feeling of running without getting anywhere?</span></p>
+                <p>You work more than you should, study when you can, save as much as you can—and yet financial peace never arrives. It's not laziness. It's not a lack of intelligence. And, most of the time, it's not a lack of effort.</p>
+                <p><span class="highlight">It's a lack of understanding.</span></p>
+                <p>The truth that no one teaches in the bank, at school, or in college is simple and uncomfortable: <span class="highlight">money doesn't obey the same rules as physical effort.</span> If it did, millionaire bricklayers would be the rule, not the exception. Money is not an exact science like mathematics or physics. It behaves much more like human psychology: irrational, emotional, and deeply influenced by fear and ego.</p>
+                <p>While you try to "do more," the real game happens inside your head.</p>
+            </div>
+
+            <div class="content-block">
+                <h2 class="gold-glow">Engineering Scarcity vs. Abundance</h2>
+                <p>Most people spend their entire lives trying to solve financial problems with the wrong tools: Perfect spreadsheets. Promises of miraculous investments. The next "unmissable" stock. A slightly higher interest rate.</p>
+                <p>All of this helps… but it doesn't solve the problem. Because money isn't controlled by numbers. It's controlled by a brain that evolved to <span class="highlight">survive</span>, not to get rich.</p>
+                <p>That's why intelligent people go broke. That's why those who earn more often live worse lives. And that's why effort without direction leads to frustration.</p>
+                <p>To escape this invisible labyrinth, you need to change the way you think. There are three fundamental mental shifts:</p>
+
+                <h3 class="gold-glow">1. Breaking the illusion of "having"</h3>
+                <p>Wealth isn't what you buy. <span class="highlight">Wealth is what you don't spend.</span> It's money that gives you the freedom to say "no." No to an abusive boss. No to a bad business. No to a life you didn't consciously choose.</p>
+                <p>Whenever you spend money to prove something to others—status, success, power—you are, mathematically and psychologically, becoming poorer. <span class="highlight">True wealth is silent. It doesn't shout. It protects.</span></p>
+
+                <h3 class="gold-glow">2. Shielding against noise</h3>
+                <p>The world doesn't want you to think. It wants you to react. Bad news generates panic. Good news generates euphoria. Both serve to make you act impulsively.</p>
+                <p>Those who build wealth don't win through genius. <span class="highlight">They win through emotional consistency.</span> Shielding your mind means accepting that you don't need to win all the time. You just need to avoid losing when you shouldn't.</p>
+
+                <h3 class="gold-glow">3. Mastering "Enough"</h3>
+                <p>The biggest enemy of your wealth isn't the market. It's the <span class="highlight">moving benchmark of success.</span> You reach a goal—and immediately change the pattern. You earn more—and start spending more. Those who don't know how to define "enough" will never be rich. It doesn't matter how many digits are in the account.</p>
+            </div>
+
+            <div class="content-block" style="margin-bottom: 10px;">
+                <h2 class="gold-glow">The invitation to the next level</h2>
+                <p>Abundance is not an external event; it's a mental state built over time, with small, repeated, and emotionally difficult decisions. The problem is that this path is full of invisible traps—inherited fears, old beliefs, and social comparisons.</p>
+                <p>There's a turning point. A profound study that doesn't worry about how much you earn, but about <span class="highlight">how you think, react, and decide.</span> Knowledge that doesn't promise shortcuts, but offers something far more valuable: <span class="highlight">Clarity.</span></p>
+                <p><span class="highlight">If you feel you've worked too hard to stay in the same place, then this is the next logical step.</span></p>
+            </div>
+
+            <section class="cta-container">
+                <div class="scroll-arrow">
+                    <svg viewBox="0 0 24 24"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+                </div>
+                
+                <p class="gold-glow" style="font-family: 'Cinzel'; font-size: 1.3rem; margin-bottom: 5px;">The Psychology of Money</p>
+                <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9rem;">By Morgan Housel</p>
+                
+                <a href="https://amzn.to/4s21LOs" target="_blank" class="btn-premium">Unlock Your Clarity</a>
+            </section>
+        </main>
+
+        <footer>
+            &copy; 2024 MENTE & DINHEIRO | PREMIUM EXPERIENCE
+        </footer>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const s = window.pageYOffset;
+            const a1 = document.getElementById('a1');
+            const a2 = document.getElementById('a2');
+            // Parallax otimizado para as novas imagens
+            if(a1) a1.style.transform = `translateY(${s * 0.15}px) rotate(${-10 + s * 0.01}deg)`;
+            if(a2) a2.style.transform = `translateY(${s * -0.1}px)`;
+        });
+    </script>
+</body>
+</html>
